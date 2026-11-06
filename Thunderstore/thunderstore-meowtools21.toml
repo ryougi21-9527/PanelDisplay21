@@ -7,7 +7,7 @@ repository = "https://thunderstore.io"
 [package]
 namespace = "MeowTools21"
 name = "MeowTools21"
-description = "2026-11-07 更新：中文属性面板 + 宝箱高亮 + 小地图，一次装齐，依赖自动装好。"
+description = "最后更新：2026-11-07"
 websiteUrl = "https://github.com/ryougi21-9527/PanelDisplay21"
 containsNsfwContent = false
 
