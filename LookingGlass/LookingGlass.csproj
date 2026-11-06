@@ -1,0 +1,67 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>preview</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>PanelDisplay21</AssemblyName>
+    <Product>21的喵喵工具</Product>
+    <BepInExPluginGuid>MeowTools21.PanelDisplay21</BepInExPluginGuid>
+    <!-- No .git means MinVer would produce 0.0.0-dev, so pin the version here -->
+    <MinVerVersionOverride Condition="'$(MinVerVersionOverride)' == ''">0.2.1</MinVerVersionOverride>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="BepInEx.Analyzers" Version="1.0.*">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+    <PackageReference Include="BepInEx.PluginInfoProps" Version="1.*" />
+    <PackageReference Include="RiskOfRain2.GameLibs" Version="1.5.0-r.1">
+      <ExcludeAssets></ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="UnityEngine.Modules" Version="2021.3.45">
+      <ExcludeAssets></ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Rune580.Mods.RiskOfRain2.RiskOfOptions" Version="2.8.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="ItemQualities">
+      <HintPath>..\lib-stripped\ItemQualities-nstrip.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  
+ 
+  
+ 
+  <Target Name="SetPluginVersion" BeforeTargets="AddGeneratedFile" DependsOnTargets="MinVer">
+    <PropertyGroup>
+      <PlainVersion>$(MinVerMajor).$(MinVerMinor).$(MinVerPatch)</PlainVersion>
+      <BepInExPluginVersion>$(PlainVersion)</BepInExPluginVersion>
+    </PropertyGroup>
+  </Target>
+  
+  <Target Name="PackageThunderstoreArtifact" DependsOnTargets="SetPluginVersion" AfterTargets="PostBuildEvent" Condition="$(Configuration) == 'Release'">
+    <Exec Command="tcli build --config-path $(ProjectDir)../Thunderstore/thunderstore-meowtools21.toml --package-version $(PlainVersion)" />
+    
+    <ItemGroup>
+      <FilesToRename Include="$(ProjectDir)../../出包文件夹/*-$(PlainVersion).zip" />
+    </ItemGroup>
+    
+    <Move SourceFiles="@(FilesToRename)" DestinationFiles="@(FilesToRename -&gt; Replace($(PlainVersion), $(MinVerVersion)))" />
+  </Target>
+  
+  <Target Name="PublishThunderstoreArtifact" DependsOnTargets="SetPluginVersion">
+    <Exec Command="dotnet tcli publish --config-path $(ProjectDir)../Thunderstore/thunderstore.toml --file $(ProjectDir)../*-$(MinVerVersion).zip" />
+  </Target>
+
+</Project>

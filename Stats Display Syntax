@@ -1,0 +1,51 @@
+The Stats Display bar can be customized however you want (probably)
+
+Here is a list to the file with all definitions if you want to see further or add definitions: https://github.com/Wet-Boys/LookingGlass/blob/main/LookingGlass/StatsDisplay/StatsDisplayDefinitions.cs
+
+You can use the tags like so:
+
+Critical Chance: [crit]
+Current Health: [healthPercentage]
+Bleed Chance: [bleedChance]
+Health Gained on Crit: [critHeal]
+etc...
+
+
+The current list of items you can display are 
+
+damage
+attackSpeed, attackSpeedPercent
+crit, critWithLuck, critMultiplier
+bleedChance, bleedChanceWithLuck
+
+maxHealth, maxShield, maxBarrier
+effectiveHealth, effectiveMaxHealth
+barrierDecayRate
+healthPercentage
+regen, regenHp
+armor, armorDamageReduction
+curseHealthReduction
+hasOSP
+
+speed, speedPercent, velocity
+acceleration
+availableJumps, maxJumps
+jumpPower, maxJumpHeight
+level, experience
+luck
+
+mountainShrines
+portals, shopPortal, goldPortal, msPortal, voidPortal, greenPortal
+difficultyCoefficient, stage
+ping
+
+killCount, killCountRun
+dps, percentDps
+combo, maxComboThisRun, maxCombo
+killCombo, maxKillComboThisRun, maxKillCombo
+remainingComboDuration
+
+teddyBearBlockChance, saferSpacesCD
+instaKillChance
+
+lvl1_damage, lvl1_maxHealth
