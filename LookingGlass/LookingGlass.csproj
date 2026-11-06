@@ -51,13 +51,10 @@
   </Target>
   
   <Target Name="PackageThunderstoreArtifact" DependsOnTargets="SetPluginVersion" AfterTargets="PostBuildEvent" Condition="$(Configuration) == 'Release'">
-    <Exec Command="tcli build --config-path $(ProjectDir)../Thunderstore/thunderstore-meowtools21.toml --package-version $(PlainVersion)" />
-    
-    <ItemGroup>
-      <FilesToRename Include="$(ProjectDir)../../鍑哄寘鏂囦欢澶?*-$(PlainVersion).zip" />
-    </ItemGroup>
-    
-    <Move SourceFiles="@(FilesToRename)" DestinationFiles="@(FilesToRename -&gt; Replace($(PlainVersion), $(MinVerVersion)))" />
+    <!-- 1. 面板本体包：带 dll，是真正干活的包，后续更新都发这个 -->
+    <Exec Command="tcli build --config-path &quot;$(ProjectDir)../Thunderstore/thunderstore-paneldisplay21.toml&quot; --package-version $(PlainVersion)" />
+    <!-- 2. 整合包：纯依赖清单，不带任何第三方 dll，靠 dependencies 拉齐 -->
+    <Exec Command="tcli build --config-path &quot;$(ProjectDir)../Thunderstore/thunderstore-meowtools21.toml&quot; --package-version $(PlainVersion)" />
   </Target>
   
   <Target Name="PublishThunderstoreArtifact" DependsOnTargets="SetPluginVersion">

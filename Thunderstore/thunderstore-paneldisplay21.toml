@@ -1,0 +1,39 @@
+[config]
+schemaVerison = "0.0.1"
+
+[general]
+repository = "https://thunderstore.io"
+
+[package]
+namespace = "MeowTools21"
+name = "PanelDisplay21"
+description = "全中文属性面板：属性条、物品逐层数值、buff 剩余时间与悬停说明、背包排序、DPS 统计。基于 LookingGlass 的汉化魔改版。"
+websiteUrl = "https://github.com/ryougi21-9527/PanelDisplay21"
+containsNsfwContent = false
+
+[package.dependencies]
+bbepis-BepInExPack = "5.4.2122"
+Rune580-Risk_Of_Options = "2.8.6"
+
+[build]
+icon = "icons/meowtools21-icon.png"
+readme = "readme-paneldisplay21.md"
+outdir = "../../出包文件夹"
+
+[[build.copy]]
+source = "../LookingGlass/bin/Release/netstandard2.1/PanelDisplay21.dll"
+target = "plugins/PanelDisplay21/"
+
+[[build.copy]]
+source = "CHANGELOG.md"
+target = "/"
+
+[[build.copy]]
+source = "../LICENSE"
+target = "/"
+
+[publish]
+communities = [ "riskofrain2" ]
+
+[publish.categories]
+riskofrain2 = [ "mods", "client-side" ]
