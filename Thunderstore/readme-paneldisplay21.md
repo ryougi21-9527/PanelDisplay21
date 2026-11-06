@@ -14,7 +14,6 @@
 ## 注意
 
 - 别和原版 LookingGlass 同时开，功能重叠
-- 0.2.4 起插件标识改名成 `MeowTools21.PanelDisplay21`，从旧版本升级的话，把 `BepInEx/config` 里原来那个面板配置文件改名成 `MeowTools21.PanelDisplay21.cfg`，设置就还在
 
 ## 来源
 
