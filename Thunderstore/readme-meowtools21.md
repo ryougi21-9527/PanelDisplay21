@@ -29,4 +29,4 @@
 
 本包基于 [Wet-Boys/LookingGlass](https://github.com/Wet-Boys/LookingGlass)（LGPL-3.0）修改，随包附带 LICENSE 全文。
 
-修改部分源码获取方式：待补充。
+修改部分的完整源码：https://github.com/ryougi21-9527/PanelDisplay21
