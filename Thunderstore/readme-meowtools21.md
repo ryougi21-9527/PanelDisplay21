@@ -27,6 +27,8 @@
 
 ## 源码与许可
 
-本包基于 [Wet-Boys/LookingGlass](https://github.com/Wet-Boys/LookingGlass)（LGPL-3.0）修改，随包附带 LICENSE 全文。
+面板部分基于 [Wet-Boys/LookingGlass](https://github.com/Wet-Boys/LookingGlass)（LGPL-3.0），是一个**中文汉化 + 魔改版**：功能主体来自原作者，中文文本与界面调整由我完成。它不是原版 LookingGlass，也不是官方维护的分支。随包附带 LICENSE 全文。
 
-修改部分的完整源码：https://github.com/ryougi21-9527/PanelDisplay21
+修改部分的完整源码（含全部改动与提交记录）：https://github.com/ryougi21-9527/PanelDisplay21
+
+宝箱高亮与小地图直接引用原作者发布的包，本包没有重分发他们的文件。

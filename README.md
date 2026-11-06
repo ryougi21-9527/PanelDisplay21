@@ -1,91 +1,47 @@
-# LookingGlass
-A fully open source UI mod, compatible with RiskUI
+# PanelDisplay21 · 21的喵喵工具（面板部分）
 
+一个《雨中冒险 2》的界面增强 mod，本仓库是它的完整源码。
 
-# Features:
+**先说清楚来源**：这个 mod 不是从零写的，它基于开源项目 [Wet-Boys/LookingGlass](https://github.com/Wet-Boys/LookingGlass)（LGPL-3.0）。我在它的基础上做了**中文本地化**，并按自己的使用习惯做了**一定程度的魔改**。功能主体、代码结构、hook 思路都来自原作者，功劳是他们的；中文文本、界面调整和一部分行为改动是我加的。
 
-## Item Stats
+## 我改了什么
 
-- Full item descriptions for all items. Items setup with the API have their calculations noted in the description as well.
+- **界面全中文**：右侧属性条、物品数值说明、buff 悬停提示、设置菜单、各类提示文本
+- **属性条调整**：去掉斩杀数 / 连击数，在暴击率下面加「暴击伤害」（显示倍率，原生 200%）
+- **buff 说明汉化**：逐步补齐中文名称与描述（仍在进行中）
+- **配置默认值**：暴击率不再默认封顶 100%
+- **打包与分发**：加了打包脚本和 Thunderstore 配置，能直接出 r2modman 导入包和手动安装包
 
-![Item Stats](https://i.imgur.com/WXTVSxm.png)
-![Item Stats 2](https://i.imgur.com/avVswuU.png)
+## 没变的部分
 
-## Auto Sort Items
+- 程序集名仍是 `PanelDisplay21`，BepInPlugin GUID 仍是 `MeowTools21.PanelDisplay21` —— 从旧版本升级，已有配置不会丢
+- 物品数值、排序、DPS 统计、传送门追踪等模块的逻辑保持原样
 
-- Sort your inventory with various parameters. Defaults to sorting by tier and count.
+## 构建
 
-![Auto Sort Items](https://i.imgur.com/OfKQAdG.png)
+需要 .NET SDK 和游戏程序集引用（`lib-stripped/` 里放了编译所需的 stripped 依赖）。
 
-## Stats Display
+```
+dotnet build -c Debug
+```
 
-- Shows you general character stats on the right side. Can customize however you want in settings, see [the syntax guide](https://github.com/Wet-Boys/LookingGlass/blob/main/Stats%20Display%20Syntax) for adding in items
+产物在 `LookingGlass/bin/Debug/netstandard2.1/PanelDisplay21.dll`。
 
-![Vanilla Stats Display](https://i.imgur.com/z6P9rYb.png)
-![RiskUI Stats Display](https://i.imgur.com/iYrnF6I.png)
+版本号由 `LookingGlass/LookingGlass.csproj` 里的 `MinVerVersionOverride` 固定。
 
-## Number Go Up
+## 打包
 
-- DPS meter and combo counter (Part of stats display)
+```
+powershell -NoProfile -ExecutionPolicy Bypass -File tools\package-meowtools21.ps1
+```
 
-![Number go Up](https://i.imgur.com/kHdyCqe.png)
+一次产出两个包到 `..\出包文件夹`：r2modman 导入包、手动安装包（内嵌 RiskOfOptions）。
 
-## Command Window Tweaks
+## 许可
 
-- Various tweaks to the command window, such as resizing, option to remove the blur, and adding item counters to your existing items.
+本仓库整体以 **LGPL-3.0** 发布，LICENSE 全文见仓库根目录。这是上游 LookingGlass 的许可证，衍生作品必须沿用。
 
-![Command Window Tweaks](https://i.imgur.com/5buYHlv.png)
+## 相关
 
-## Item Counters
-
-- Count your items in the scoreboard so you can see who is poor.
-
-![Item Counters](https://i.imgur.com/40vXB3Y.png)
-
-## Buff Timers
-
-- Timers for buffs. RoR2 does not network buff timers, please install [NetworkedTimedBuffs](https://thunderstore.io/package/Bubbet/NetworkedTimedBuffs/) if you want clients to have timers.
-
-![Buff Timers](https://i.imgur.com/2TwEpg0.png)
-
-## Risk of Options Support/RiskUI support
-
-- Change any options in game with Risk of Options
-
-- Fully compatible with RiskUI
-
-## Additional Info
-
-- String for the stats display can be customized using Unity Rich Text rules, see  https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText.html for more info.
-
-- Note that this mod does not correct the vanilla item descriptions, so the listed stats may differ from the ones the mod shows. A different mod is recommended if you want those corrected.
-
-
-# Have an issue/suggestion or want to contribute?
-
-- Please submit issues or suggestions to the GitHub repo https://github.com/Wet-Boys/LookingGlass/issues
-
-- If you want to contribute to the mod, feel free to reach out to us and/or create a pull request. Please note that the CLA indicates all contributions to this project are licensed under LGPLv3.
-
-
-
-# Credits:
-
-- https://github.com/ontrigger/ItemStatsMod
-- https://github.com/MCMrARM/ror2-mods
-- https://github.com/Moffein/ItemStats
-- https://github.com/Vl4dimyr/CommandItemCount for being great open source projects to use as reference material/code
-
-
-- @github.com (discord tag): icon
-- @rune (discord tag): coding
-- @nunchuk (discord tag): coding
-- SSM240 (github tag): coding 
-- yuukotf2 (github tag): coding
-- shirograhm (github tag): coding
-- Warmek (github tag): coding
-- timoreo22 (github tag): coding
-- isolno (github tag): coding
-- itsschwer (github tag): coding
-- WolfoIsBestWolf (aka Wolfo) (github tag): coding
-- Tsuzura-dev (github tag): coding
+- 上游项目：[Wet-Boys/LookingGlass](https://github.com/Wet-Boys/LookingGlass)
+- 整合包（Thunderstore）：`MeowTools21` —— 这个包除了本面板，还通过依赖引用 [QoLChests](https://thunderstore.io/c/riskofrain2/p/Faustvii/QoLChests/)（宝箱高亮）和 [MiniMapMod](https://thunderstore.io/c/riskofrain2/p/DekuDesu/MiniMapMod/)（小地图），那两个是作者原版，我没有改动也没有重分发
