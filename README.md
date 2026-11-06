@@ -14,7 +14,7 @@
 
 ## 没变的部分
 
-- 程序集名仍是 `PanelDisplay21`，BepInPlugin GUID 仍是 `MeowTools21.PanelDisplay21` —— 从旧版本升级，已有配置不会丢
+- 程序集名仍是 `PanelDisplay21`；插件标识从 0.2.4 起改为 `MeowTools21.PanelDisplay21`（旧名字里带了本机用户名，公开分发不合适），改名后旧配置文件需手动改名才能沿用
 - 物品数值、排序、DPS 统计、传送门追踪等模块的逻辑保持原样
 
 ## 构建
