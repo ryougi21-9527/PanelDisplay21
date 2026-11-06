@@ -8,7 +8,7 @@
     <Product>21的喵喵工具</Product>
     <BepInExPluginGuid>MeowTools21.PanelDisplay21</BepInExPluginGuid>
     <!-- No .git means MinVer would produce 0.0.0-dev, so pin the version here -->
-    <MinVerVersionOverride Condition="'$(MinVerVersionOverride)' == ''">0.2.1</MinVerVersionOverride>
+    <MinVerVersionOverride Condition="'$(MinVerVersionOverride)' == ''">0.2.2</MinVerVersionOverride>
   </PropertyGroup>
   
   <ItemGroup>
@@ -54,7 +54,7 @@
     <Exec Command="tcli build --config-path $(ProjectDir)../Thunderstore/thunderstore-meowtools21.toml --package-version $(PlainVersion)" />
     
     <ItemGroup>
-      <FilesToRename Include="$(ProjectDir)../../出包文件夹/*-$(PlainVersion).zip" />
+      <FilesToRename Include="$(ProjectDir)../../鍑哄寘鏂囦欢澶?*-$(PlainVersion).zip" />
     </ItemGroup>
     
     <Move SourceFiles="@(FilesToRename)" DestinationFiles="@(FilesToRename -&gt; Replace($(PlainVersion), $(MinVerVersion)))" />

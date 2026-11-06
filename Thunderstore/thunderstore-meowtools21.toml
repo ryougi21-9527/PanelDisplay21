@@ -35,10 +35,6 @@ target = "/"
 source = "../LICENSE"
 target = "/"
 
-[[build.copy]]
-source = "./icons/meowtools21-icon.png"
-target = "plugins/PanelDisplay21/icons/"
-
 [publish]
 communities = [ "riskofrain2" ]
 
