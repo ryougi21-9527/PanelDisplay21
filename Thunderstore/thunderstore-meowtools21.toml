@@ -19,7 +19,7 @@ Faustvii-QoLChests = "1.3.6"
 DekuDesu-MiniMapMod = "4.0.0"
 
 [build]
-icon = "icons/looking-glass-icon-static.png"
+icon = "icons/meowtools21-icon.png"
 readme = "readme-meowtools21.md"
 outdir = "../../出包文件夹"
 
@@ -36,7 +36,7 @@ source = "../LICENSE"
 target = "/"
 
 [[build.copy]]
-source = "./icons/looking-glass-icon-static.png"
+source = "./icons/meowtools21-icon.png"
 target = "plugins/PanelDisplay21/icons/"
 
 [publish]
