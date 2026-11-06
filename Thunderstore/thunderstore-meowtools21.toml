@@ -12,7 +12,7 @@ websiteUrl = "https://github.com/ryougi21-9527/PanelDisplay21"
 containsNsfwContent = false
 
 [package.dependencies]
-MeowTools21-PanelDisplay21 = "0.2.3"
+MeowTools21-PanelDisplay21 = "0.2.4"
 bbepis-BepInExPack = "5.4.2122"
 Rune580-Risk_Of_Options = "2.8.6"
 RiskofThunder-HookGenPatcher = "1.2.9"

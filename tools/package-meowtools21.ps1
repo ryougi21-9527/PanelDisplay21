@@ -29,7 +29,7 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 $repoRoot = Split-Path -Parent $PSScriptRoot          # ...\LookingGlass-main
 $proj     = Join-Path $repoRoot 'LookingGlass\LookingGlass.csproj'
 $thunder  = Join-Path $repoRoot 'Thunderstore'
-$iconPng  = Join-Path $thunder 'icons\looking-glass-icon-static.png'
+$iconPng  = Join-Path $thunder 'icons\meowtools21-icon.png'
 
 $packName = '21的喵喵工具'
 
@@ -85,8 +85,8 @@ foreach ($pair in @(
 $OutDir = [System.IO.Path]::GetFullPath($OutDir)
 if (-not (Test-Path $OutDir)) { New-Item -ItemType Directory -Path $OutDir -Force | Out-Null }
 
-# 每次出包先删掉上一次的包
-$old = Get-ChildItem $OutDir -File -Filter '*.zip' -ErrorAction SilentlyContinue
+# 每次出包先删掉上一次的包（只删本脚本自己产出的，别碰 tcli 出的 Thunderstore 包）
+$old = Get-ChildItem $OutDir -File -Filter "$packName-*.zip" -ErrorAction SilentlyContinue
 foreach ($f in $old) {
     Write-Host "删除旧包: $($f.Name)" -ForegroundColor DarkYellow
     Remove-Item $f.FullName -Force
@@ -155,9 +155,9 @@ $manifest = @"
   "website_url": "",
   "description": "自用整合包：改写版 LookingGlass 全中文面板 + QoLChests 宝箱高亮 + MiniMapMod 小地图。",
   "dependencies": [
-    "bbepis-BepInExPack-5.4.2113",
-    "Rune580-Risk_Of_Options-2.8.3",
-    "RiskofThunder-HookGenPatcher-1.2.5"
+    "bbepis-BepInExPack-5.4.2122",
+    "Rune580-Risk_Of_Options-2.8.6",
+    "RiskofThunder-HookGenPatcher-1.2.9"
   ]
 }
 "@
@@ -218,7 +218,6 @@ try {
     Write-TextFile $stage1 'README.md' $readme
     if (Test-Path $iconPng) { Copy-Into $iconPng $stage1 'icon.png' }
     Copy-Into $dll $stage1 "plugins\$asmName\$asmName.dll"
-    if (Test-Path $iconPng) { Copy-Into $iconPng $stage1 "plugins\$asmName\icons\looking-glass-icon-static.png" }
     Copy-Into $qol.FullName  $stage1 'plugins\QoLChests\QoLChests.dll'
     Copy-Into $mini.FullName $stage1 'plugins\MiniMapMod\MiniMapMod.dll'
     Copy-Into $miniLib.FullName $stage1 'plugins\MiniMapMod\MiniMapLibrary.dll'
@@ -231,7 +230,6 @@ finally { Remove-Item $stage1 -Recurse -Force -ErrorAction SilentlyContinue }
 $stage2 = New-Staging
 try {
     Copy-Into $dll $stage2 "BepInEx\plugins\$asmName\$asmName.dll"
-    if (Test-Path $iconPng) { Copy-Into $iconPng $stage2 "BepInEx\plugins\$asmName\icons\looking-glass-icon-static.png" }
     Copy-Into $qol.FullName     $stage2 'BepInEx\plugins\QoLChests\QoLChests.dll'
     Copy-Into $mini.FullName    $stage2 'BepInEx\plugins\MiniMapMod\MiniMapMod.dll'
     Copy-Into $miniLib.FullName $stage2 'BepInEx\plugins\MiniMapMod\MiniMapLibrary.dll'

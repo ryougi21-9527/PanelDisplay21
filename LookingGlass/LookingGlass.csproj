@@ -8,7 +8,7 @@
     <Product>21的喵喵工具</Product>
     <BepInExPluginGuid>MeowTools21.PanelDisplay21</BepInExPluginGuid>
     <!-- No .git means MinVer would produce 0.0.0-dev, so pin the version here -->
-    <MinVerVersionOverride Condition="'$(MinVerVersionOverride)' == ''">0.2.3</MinVerVersionOverride>
+    <MinVerVersionOverride Condition="'$(MinVerVersionOverride)' == ''">0.2.4</MinVerVersionOverride>
   </PropertyGroup>
   
   <ItemGroup>
